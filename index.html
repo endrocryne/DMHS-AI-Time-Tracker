@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracking App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="liquid-glass" data-theme="light">
+    <div class="header">
+        <div class="title">Time Tracking</div>
+        <div class="controls">
+            <button id="settingsBtn">⚙️ Settings</button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-link active" onclick="openTab(event, 'ai-assistant')">
+            <i class="material-icons">assistant</i> AI Assistant
+        </button>
+        <button class="tab-link" onclick="openTab(event, 'log-hours')">
+            <i class="material-icons">schedule</i> Log/Edit Hours
+        </button>
+        <button class="tab-link" onclick="openTab(event, 'view-hours')">
+            <i class="material-icons">visibility</i> View Hours
+        </button>
+    </div>
+
+    <div id="ai-assistant" class="tab-content" style="display: block;">
+        <div id="ai-chat-container" class="chat-container">
+            <div class="ai-chat-header">
+                <button id="clearChatBtn">💥 New / Clear</button>
+            </div>
+                    <div class="messages" id="ai-messages">
+                    </div>
+
+            <div class="input-area">
+                <div class="input-container">
+                    <textarea id="ai-message-input" class="message-input" placeholder="Type your message..." rows="1"></textarea>
+                </div>
+                <button id="ai-listen-btn" class="file-btn" title="Voice">🎤</button>
+                <button id="ai-send-btn" class="send-btn" title="Send">📤</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="log-hours" class="tab-content">
+        <h3>Log/Edit Hours</h3>
+        <div id="employee-management">
+            <h4>Manage Employees</h4>
+            <form id="add-employee-form">
+                <input type="text" id="employee-name" placeholder="Employee Name" required>
+                <button type="submit">Add Employee</button>
+            </form>
+            <div id="employee-list"></div>
+        </div>
+        <hr>
+        <div id="log-hours-form-container">
+            <h4>Log Hours</h4>
+            <form id="log-hours-form">
+                <div class="form-group">
+                    <label for="employee-select">Employee:</label>
+                    <select id="employee-select" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" id="start-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="end-time">End Time:</label>
+                    <input type="time" id="end-time" required>
+                </div>
+                <button type="submit">Log Hours</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-hours" class="tab-content">
+        <h3>View Completed Hours</h3>
+        <div id="calendar-container"></div>
+        <div id="daily-summary"></div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Settings</div>
+                <button class="close-btn" id="closeSettings">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label for="apiKeyInput">Gemini API Key:</label>
+                <input type="password" id="apiKeyInput" placeholder="Enter your Gemini API key">
+                <a href="https://aistudio.google.com/app/apikey" target="_blank" class="api-key-link">How to get an API Key?</a>
+            </div>
+
+            <div class="form-group">
+                <label for="themeSelect">Theme:</label>
+                <select id="themeSelect">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="styleSelect">Style:</label>
+                <select id="styleSelect">
+                    <option value="material3">Google Material 3</option>
+                    <option value="fluent">Microsoft Fluent Design</option>
+                    <option value="liquid-glass">Liquid Glass</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="accentColorInput">Accent Color:</label>
+                <input type="color" id="accentColorInput">
+            </div>
+
+            <div class="form-group">
+                <label for="fontSizeSlider">Font Size:</label>
+                <input type="range" id="fontSizeSlider" min="12" max="24" value="16">
+            </div>
+
+            <div class="form-group toggle-group">
+                <label for="highContrastToggle">High Contrast:</label>
+                <label class="switch"><input type="checkbox" id="highContrastToggle"><span class="slider"></span></label>
+            </div>
+
+            <button id="saveSettings">Save Settings</button>
+        </div>
+    </div>
+
+    <div class="modal" id="editEntryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Edit Time Entry</div>
+                <button class="close-btn" id="closeEditModal">&times;</button>
+            </div>
+            <form id="edit-entry-form">
+                <input type="hidden" id="edit-entry-id">
+                <div class="form-group">
+                    <label for="edit-date">Date:</label>
+                    <input type="date" id="edit-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-start-time">Start Time:</label>
+                    <input type="time" id="edit-start-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-end-time">End Time:</label>
+                    <input type="time" id="edit-end-time" required>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="gemini-chatbot.js"></script>
+</body>
+</html>
