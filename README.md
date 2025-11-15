@@ -5,6 +5,8 @@ This is a simple, accessible time tracking application designed to help individu
 ## Known Issues (PLEASE READ)
 Upon initially launching the app, all 3 tabs are combined into one view. To fix this, navigate to another tab using the menu and navigate back. We are working on an offical fix soon.
 
+The settings menu will not open if you are on the AI assistant tab. Fix: navigate to a different tab then open the settings menu. We are working on a fix and it should be ready soon.
+
 ## Credits
 Many components of this app are shared code from the DMHS AI (https://dmhs-ai.gt.tc) application made by Agastya Mishra. This code was used with permission.
 
