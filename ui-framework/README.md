@@ -9,6 +9,8 @@ A lightweight, beautiful, and accessible UI framework extracted from the DMHS AI
 
 - **Three Design Systems**: Switch between Google Material 3, Microsoft Fluent Design, and Liquid Glass aesthetics
 - **Complete Theming**: Light, Dark, and High Contrast themes with custom accent colors
+- **Drag & Drop Customization**: Rearrange and resize UI elements in real-time
+- **Layout Persistence**: Save custom layouts to localStorage
 - **Zero Dependencies**: Pure HTML, CSS, and JavaScript (only Material Icons for icons)
 - **Mobile-First**: Responsive design that works on all devices
 - **Accessible**: Built with WCAG guidelines in mind
@@ -17,7 +19,7 @@ A lightweight, beautiful, and accessible UI framework extracted from the DMHS AI
 
 ## 🚀 Quick Start
 
-### 1. Include Framework Files
+### Include Framework Files
 
 ```html
 <!DOCTYPE html>
@@ -32,6 +34,7 @@ A lightweight, beautiful, and accessible UI framework extracted from the DMHS AI
 <body class="liquid-glass" data-theme="light">
     <!-- Your content -->
     <script src="framework.js"></script>
+    <script src="customizer.js"></script>
 </body>
 </html>
 ```
@@ -56,6 +59,7 @@ Use the starter template or examples to get started quickly!
 ui-framework/
 ├── framework.css           # Core CSS styles
 ├── framework.js            # Core JavaScript functionality
+├── customizer.js           # Drag-and-drop customization module
 ├── starter-template.html   # Clean starter template
 ├── FRAMEWORK-GUIDE.md      # Comprehensive documentation
 ├── README.md              # This file
@@ -132,6 +136,19 @@ document.body.setAttribute('data-theme', 'dark');
     <!-- Content -->
 </div>
 ```
+
+### Layout Customization (NEW!)
+Enable drag-and-drop customization in settings:
+```javascript
+// Customization is automatically enabled when you include customizer.js
+// Users can toggle it in Settings > Customize Layout
+```
+
+Features:
+- **Drag to Reorder**: Click and drag elements to rearrange them
+- **Resize Elements**: Use the resize handle (⋰) in bottom-right corner
+- **Persistent Layouts**: Saved automatically to localStorage
+- **Reset Option**: Restore default layout anytime
 
 ### Modal Dialogs
 ```html
@@ -298,7 +315,7 @@ The framework is mobile-first and fully responsive:
 - `FRAMEWORK-GUIDE.md` (17KB) - Complete documentation
 - 2 complete example applications
 
-**Total Size**: ~43KB (uncompressed, excluding examples)
+**Total Size**: ~58KB (uncompressed, excluding examples)
 
 ## 🚦 Getting Help
 

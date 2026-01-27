@@ -18,6 +18,7 @@ This document provides comprehensive guidance on using the UI Framework to build
 8. [Examples](#examples)
 9. [Accessibility](#accessibility)
 10. [Performance](#performance)
+11. [UI Customization](#ui-customization)
 
 ---
 
@@ -738,6 +739,116 @@ To extend the framework:
 3. **Test in all three design systems**
 4. **Document your additions** in this guide
 5. **Ensure accessibility compliance**
+
+---
+
+## UI Customization
+
+### Drag-and-Drop Layout Customization
+
+The framework includes a powerful customization system that allows users to rearrange and resize UI elements.
+
+#### Enabling Customization
+
+1. **Include the customizer module** in your HTML:
+```html
+<script src="framework.js"></script>
+<script src="customizer.js"></script>
+```
+
+2. **Access via Settings**: Users can toggle customization mode in Settings > Customize Layout
+
+#### Features
+
+**Drag to Reorder**
+- Click and drag any customizable element
+- Drop it in a new position to rearrange
+- Works across different containers
+
+**Resize Elements**
+- Use the resize handle (⋰) in the bottom-right corner
+- Drag to adjust width and height
+- Minimum sizes enforced for usability
+
+**Layout Persistence**
+- Custom layouts are automatically saved to localStorage
+- Restored on page load
+- Persists across sessions
+
+**Reset to Default**
+- Users can reset to the original layout anytime
+- Clears all customizations
+- Reloads the page with defaults
+
+#### Customizable Elements
+
+The following elements are automatically customizable:
+- Cards (`.card`)
+- Form groups (`.form-group`)
+- Chart placeholders (`.chart-placeholder`)
+- Data tables (`.data-table`)
+- Notification lists (`.notification-list`)
+- Dashboard grid items
+- Timer/stopwatch displays
+
+#### Usage Example
+
+```javascript
+// Initialize framework with customization
+const app = new UIFramework({
+    appName: 'My App',
+    defaultTheme: 'light',
+    defaultStyle: 'liquid-glass'
+});
+
+// Customizer is automatically initialized
+// Access it via: app.customizer
+```
+
+#### Customization API
+
+```javascript
+// Enable customization mode programmatically
+app.customizer.toggleCustomizationMode(true);
+
+// Disable customization mode
+app.customizer.toggleCustomizationMode(false);
+
+// Save current layout
+app.customizer.saveLayout();
+
+// Load saved layout
+app.customizer.applyLayout();
+
+// Reset to default
+app.customizer.resetLayout();
+```
+
+#### Best Practices
+
+1. **Test with customization**: Ensure your app works well with rearranged elements
+2. **Provide defaults**: Always have a sensible default layout
+3. **Consider mobile**: Customization works best on desktop/tablet
+4. **Document for users**: Tell users about the customization feature
+5. **Backup layouts**: Consider exporting/importing custom layouts
+
+#### Styling Customizable Elements
+
+When customization mode is active, elements receive special styling:
+
+```css
+.ui-customizable {
+    position: relative;
+    cursor: move;
+    border: 2px dashed transparent;
+}
+
+.ui-customizable:hover {
+    border-color: var(--primary);
+}
+```
+
+You can override these styles in your custom CSS if needed.
 
 ---
 
